@@ -1,6 +1,8 @@
 from __future__ import print_function
 import os
 import sys
+import logging
+import random
 
 from flask import Flask, Blueprint, request, jsonify
 
@@ -10,12 +12,13 @@ bp = Blueprint(__name__, 'api', url_prefix='/api/v4')
 
 @bp.route('/runners', methods=['POST'])
 def register_runner():
+    logging.info("Got register_runner request: {!r}".format(request.data))
     req = request.json
     res = {}
 
     token = req['token']
     if token.isalnum() and token.islower():
-        res['token'] = token.upper()
+        res['token'] = "{}{}".format(token.upper(), random.randint(100, 999))
         status = 201
     elif token.isalnum() and token.isupper():
         status = 403
@@ -27,6 +30,7 @@ def register_runner():
 
 @bp.route('/runners/verify', methods=['POST'])
 def verify_runner():
+    logging.info("Got verify_runner request: {!r}".format(request.data))
     req = request.json
     res = {}
 
@@ -56,6 +60,8 @@ if __name__ == '__main__':
 
     with open(pidfile, 'w') as f:
         f.write(pid)
+
+    logging.basicConfig(level=logging.DEBUG)
 
     try:
         app.run(port=port, debug=False)
