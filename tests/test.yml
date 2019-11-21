@@ -16,11 +16,23 @@
         src: mock_gitlab_runner_ci.py
         dest: "~/mock_gitlab_runner_ci.py"
       when: run_mock_server
+    - name: Ensure mock CI pidfile is absent
+      file:
+        path: "~/mock_ci.pid"
+        state: absent
+      when: run_mock_server
     - name: Run the mock CI
-      command: "python3 ~/mock_gitlab_runner_ci.py ~/mock_ci.pid 6060"
+      shell: "python3 ~/mock_gitlab_runner_ci.py ~/mock_ci.pid 6060  >~/mock_ci.log 2>&1"
       async: 3600
       poll: 0
       register: mock_server
+      when: run_mock_server
+    - name: Wait for pidfile to be created
+      wait_for:
+        host: 127.0.0.1
+        port: 6060
+        delay: 1
+        timeout: 30
       when: run_mock_server
 
 - hosts: localhost
