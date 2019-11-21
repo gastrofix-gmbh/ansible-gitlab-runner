@@ -8,7 +8,9 @@
     insertafter: '^\s*name ='
     backrefs: no
   check_mode: no
-  notify: restart_gitlab_runner
+  notify:
+  - restart_gitlab_runner
+  - restart_gitlab_runner_macos
 
 - name: Set coordinator URL
   lineinfile:
@@ -19,7 +21,9 @@
     insertafter: '^\s*limit ='
     backrefs: no
   check_mode: no
-  notify: restart_gitlab_runner
+  notify:
+  - restart_gitlab_runner
+  - restart_gitlab_runner_macos
 
 - name: Set environment option
   lineinfile:
@@ -30,7 +34,9 @@
     insertafter: '^\s*url='
     backrefs: no
   check_mode: no
-  notify: restart_gitlab_runner
+  notify:
+  - restart_gitlab_runner
+  - restart_gitlab_runner_macos
 
 - name: Set runner executor option
   lineinfile:
@@ -41,7 +47,9 @@
     insertafter: '^\s*url ='
     backrefs: no
   check_mode: no
-  notify: restart_gitlab_runner
+  notify:
+  - restart_gitlab_runner
+  - restart_gitlab_runner_macos
 
 - name: Set output_limit option
   lineinfile:
@@ -52,7 +60,9 @@
     insertafter: '^\s*executor ='
     backrefs: no
   check_mode: no
-  notify: restart_gitlab_runner
+  notify:
+  - restart_gitlab_runner
+  - restart_gitlab_runner_macos
 
 - name: Set runner docker image option
   lineinfile:
@@ -63,7 +73,9 @@
     insertafter: '^\s*executor ='
     backrefs: no
   check_mode: no
-  notify: restart_gitlab_runner
+  notify:
+  - restart_gitlab_runner
+  - restart_gitlab_runner_macos
 
 - name: Set docker privileged option
   lineinfile:
@@ -74,7 +86,9 @@
     insertafter: '^\s*executor ='
     backrefs: no
   check_mode: no
-  notify: restart_gitlab_runner
+  notify:
+  - restart_gitlab_runner
+  - restart_gitlab_runner_macos
 
 - name: Set docker volumes option
   lineinfile:
@@ -85,7 +99,9 @@
     insertafter: '^\s*executor ='
     backrefs: no
   check_mode: no
-  notify: restart_gitlab_runner
+  notify:
+  - restart_gitlab_runner
+  - restart_gitlab_runner_macos
 
 - name: Set cache type option
   lineinfile:
@@ -96,7 +112,9 @@
     insertafter: '^\s*executor ='
     backrefs: no
   check_mode: no
-  notify: restart_gitlab_runner
+  notify:
+  - restart_gitlab_runner
+  - restart_gitlab_runner_macos
 
 - name: Set cache path option
   lineinfile:
@@ -107,7 +125,9 @@
     insertafter: '^\s*executor ='
     backrefs: no
   check_mode: no
-  notify: restart_gitlab_runner
+  notify:
+  - restart_gitlab_runner
+  - restart_gitlab_runner_macos
 
 - name: Set cache s3 server addresss
   lineinfile:
@@ -118,7 +138,9 @@
     insertafter: '^\s*executor ='
     backrefs: no
   check_mode: no
-  notify: restart_gitlab_runner
+  notify:
+  - restart_gitlab_runner
+  - restart_gitlab_runner_macos
 
 - name: Set cache s3 access key
   lineinfile:
@@ -129,7 +151,9 @@
     insertafter: '^\s*executor ='
     backrefs: no
   check_mode: no
-  notify: restart_gitlab_runner
+  notify:
+  - restart_gitlab_runner
+  - restart_gitlab_runner_macos
 
 - name: Set cache s3 secret key
   lineinfile:
@@ -140,7 +164,9 @@
     insertafter: '^\s*executor ='
     backrefs: no
   check_mode: no
-  notify: restart_gitlab_runner
+  notify:
+  - restart_gitlab_runner
+  - restart_gitlab_runner_macos
 
 
 - name: Set cache shared option
@@ -152,7 +178,9 @@
     insertafter: '^\s*executor ='
     backrefs: no
   check_mode: no
-  notify: restart_gitlab_runner
+  notify:
+  - restart_gitlab_runner
+  - restart_gitlab_runner_macos
 
 - name: Set cache s3 bucket name option
   lineinfile:
@@ -163,7 +191,9 @@
     insertafter: '^\s*executor ='
     backrefs: no
   check_mode: no
-  notify: restart_gitlab_runner
+  notify:
+  - restart_gitlab_runner
+  - restart_gitlab_runner_macos
 
 - name: Set cache s3 bucket location option
   lineinfile:
@@ -174,7 +204,9 @@
     insertafter: '^\s*executor ='
     backrefs: no
   check_mode: no
-  notify: restart_gitlab_runner
+  notify:
+  - restart_gitlab_runner
+  - restart_gitlab_runner_macos
 
 - name: Set cache s3 insecure option
   lineinfile:
@@ -185,7 +217,9 @@
     insertafter: '^\s*executor ='
     backrefs: no
   check_mode: no
-  notify: restart_gitlab_runner
+  notify:
+  - restart_gitlab_runner
+  - restart_gitlab_runner_macos
 
 - name: Set ssh user option
   lineinfile:
@@ -196,7 +230,9 @@
     insertafter: '^\s*executor ='
     backrefs: no
   check_mode: no
-  notify: restart_gitlab_runner
+  notify:
+  - restart_gitlab_runner
+  - restart_gitlab_runner_macos
 
 - name: Set ssh host option
   lineinfile:
@@ -207,7 +243,9 @@
     insertafter: '^\s*executor ='
     backrefs: no
   check_mode: no
-  notify: restart_gitlab_runner
+  notify:
+  - restart_gitlab_runner
+  - restart_gitlab_runner_macos
 
 - name: Set ssh port option
   lineinfile:
@@ -218,7 +256,9 @@
     insertafter: '^\s*executor ='
     backrefs: no
   check_mode: no
-  notify: restart_gitlab_runner
+  notify:
+  - restart_gitlab_runner
+  - restart_gitlab_runner_macos
 
 - name: Set ssh password option
   lineinfile:
@@ -229,7 +269,9 @@
     insertafter: '^\s*executor ='
     backrefs: no
   check_mode: no
-  notify: restart_gitlab_runner
+  notify:
+  - restart_gitlab_runner
+  - restart_gitlab_runner_macos
 
 - name: Set ssh identity file option
   lineinfile:
@@ -240,7 +282,9 @@
     insertafter: '^\s*executor ='
     backrefs: no
   check_mode: no
-  notify: restart_gitlab_runner
+  notify:
+  - restart_gitlab_runner
+  - restart_gitlab_runner_macos
 
 - name: Set builds dir file option
   lineinfile:
@@ -251,7 +295,9 @@
     insertafter: '^\s*executor ='
     backrefs: no
   check_mode: no
-  notify: restart_gitlab_runner
+  notify:
+  - restart_gitlab_runner
+  - restart_gitlab_runner_macos
 
 - name: Set cache dir file option
   lineinfile:
@@ -262,7 +308,9 @@
     insertafter: '^\s*executor ='
     backrefs: no
   check_mode: no
-  notify: restart_gitlab_runner
+  notify:
+  - restart_gitlab_runner
+  - restart_gitlab_runner_macos
 
 - name: Ensure directory permissions
   file:
