@@ -1,12 +1,39 @@
 ---
 - hosts: localhost
-  vars:
-    possible_files:
-    files:
-      - '{{ ansible_distribution }}.yml'
-      - '{{ ansible_os_family }}.yml'
-      - default.yml
-    paths:
-      - 'vars'
+  tasks:
+    - name: Load platform-specific variables
+      include_vars: "{{ lookup('first_found', possible_files) }}"
+      vars:
+        possible_files:
+          files:
+            - '{{ ansible_distribution }}.yml'
+            - '{{ ansible_os_family }}.yml'
+            - default.yml
+          paths:
+            - 'vars'
+    - name: Copy the mock gitlab CI server
+      copy:
+        src: mock_gitlab_runner_ci.py
+        dest: "~/mock_gitlab_runner_ci.py"
+      when: run_mock_server
+    - name: Run the mock CI
+      command: "python3 ~/mock_gitlab_runner_ci.py ~/mock_ci.pid 6060"
+      async: 3600
+      poll: 0
+      register: mock_server
+      when: run_mock_server
+
+- hosts: localhost
   roles:
     - ansible-gitlab-runner
+
+- hosts: localhost
+  tasks:
+    - name: Get pid mock gitlab CI server
+      slurp:
+        src: "~/mock_ci.pid"
+      register: pidfile_b64
+      when: run_mock_server
+    - name: Run the mock CI
+      command: "kill {{ pidfile_b64.content | b64decode }}"
+      when: run_mock_server

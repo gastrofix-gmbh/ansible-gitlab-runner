@@ -11,3 +11,7 @@ gitlab_runner_runners:
       - docker
     executor: docker-windows
     state: present
+
+run_mock_server: no
+gitlab_runner_coordinator_url: "http://localhost:7070/"
+gitlab_runner_registration_token: ''
