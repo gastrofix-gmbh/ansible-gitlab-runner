@@ -268,8 +268,8 @@
   file:
     dest: "{{ item }}"
     state: directory
-    owner: gitlab-runner
-    group: gitlab-runner
+    owner: "{{ gitlab_runner_runtime_owner|default(omit) }}"
+    group: "{{ gitlab_runner_runtime_group|default(omit) }}"
     mode: 0770
     modification_time: preserve
     access_time: preserve
@@ -287,7 +287,7 @@
   when: item|length
   changed_when: False
   become: yes
-  become_user: gitlab-runner
+  become_user: gitlab_runner_runtime_owner|default(omit)
   register: ensure_directory_access
   ignore_errors: true
 
