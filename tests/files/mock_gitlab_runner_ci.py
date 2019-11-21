@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os
 import sys
 
@@ -12,7 +13,7 @@ def register_runner():
     req = request.json
     res = {}
 
-    token: str = req['token']
+    token = req['token']
     if token.isalnum() and token.islower():
         res['token'] = token.upper()
         status = 201
@@ -29,7 +30,7 @@ def verify_runner():
     req = request.json
     res = {}
 
-    token: str = req['token']
+    token = req['token']
     if token.isalnum() and token.isupper():
         status = 200
     elif token.isalnum() and token.islower():
