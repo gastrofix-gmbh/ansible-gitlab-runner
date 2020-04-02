@@ -41,9 +41,18 @@
     {% for env_var in gitlab_runner.env_vars|default([]) %}
     --env '{{ env_var }}'
     {% endfor %}
-    --docker-image '{{ gitlab_runner.docker_image|default("") }}'
+    {% if gitlab_runner.pre_clone_script|default(false) %}
+    --pre-clone-script "{{ gitlab_runner.pre_clone_script }}"
+    {% endif %}
+    --docker-image '{{ gitlab_runner.docker_image|default("alpine") }}'
     {% if gitlab_runner.docker_privileged|default(false) %}
     --docker-privileged
+    {% endif %}
+    {% if gitlab_runner.docker_tlsverify|default(false) %}
+    --docker-tlsverify '{{ gitlab_runner.docker_tlsverify|default("true") }}'
+    {% endif %}
+    {% if gitlab_runner.docker_dns|default(false) %}
+    --docker-dns '{{ gitlab_runner.docker_dns|default("1.1.1.1") }}'
     {% endif %}
     {% for volume in gitlab_runner.docker_volumes | default([]) %}
     --docker-volumes "{{ volume }}"

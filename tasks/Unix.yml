@@ -19,6 +19,7 @@
   register: configured_runners
   changed_when: False
   check_mode: no
+  become: yes
 
 - name: (Unix) Check runner is registered
   command: "{{ gitlab_runner_executable }} verify"
@@ -26,10 +27,11 @@
   ignore_errors: True
   changed_when: False
   check_mode: no
+  become: yes
 
 - name: (Unix) Register GitLab Runner
   include_tasks: register-runner.yml
-  when: gitlab_runner_registration_token | string | length > 0  # Ensure value is set
+  when: gitlab_runner.token is defined or gitlab_runner_registration_token | string | length > 0  # Ensure value is set
   loop: "{{ gitlab_runner_runners }}"
   loop_control:
     index_var: gitlab_runner_index
