@@ -1,3 +1,4 @@
+# Based on https://gitlab.com/gitlab-org/gitlab-runner/blob/master/network/gitlab_test.go
 from __future__ import print_function
 import os
 import sys
